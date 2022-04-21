@@ -11,6 +11,7 @@ class MegatoolsExperimental < Formula
   end
 
   conflicts_with "megatools", because: "Homebrew version"
+  conflicts_with "megatools-experimental-extra", because: "Experimental extra version"
 
   depends_on "asciidoc" => :build
   depends_on "pkg-config" => :build
