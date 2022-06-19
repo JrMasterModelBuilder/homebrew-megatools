@@ -1,0 +1,47 @@
+name: Stable Extra macOS 12
+
+on:
+  push:
+  schedule:
+    - cron: '0 8 * * 6'
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        config:
+          - host: macos-12
+            name: megatools-stable-extra
+            test: 1
+            args: ''
+
+    runs-on: ${{ matrix.config.host }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Tap Dir
+        run: mkdir -p "$(brew --repo)/Library/Taps/github"
+
+      - name: Tap Link
+        run: ln -s "$PWD" "$(brew --repo)/Library/Taps/github/homebrew-test"
+
+      - name: Taps
+        run: brew tap
+
+      - name: Info
+        run: brew info "github/test/${{ matrix.config.name }}"
+
+      - name: Install
+        run: brew install -v ${{ matrix.config.args }} "github/test/${{ matrix.config.name }}"
+
+      - name: Installed
+        run: brew info "github/test/${{ matrix.config.name }}"
+
+      - name: Audit
+        run: brew audit --except=file,specs "github/test/${{ matrix.config.name }}"
+
+      - name: Test
+        run: brew test "github/test/${{ matrix.config.name }}"
+        if: matrix.config.test == 1
