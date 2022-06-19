@@ -1,7 +1,7 @@
 class MegatoolsStable < Formula
   desc "Command-line client for Mega.co.nz"
   homepage "https://megatools.megous.com/"
-  url "https://megatools.megous.com/builds/megatools-1.11.0.20220519.tar.gz"
+  url "https://github.com/JrMasterModelBuilder/homebrew-megatools/releases/download/sources/megatools-1.11.0.20220519.tar.gz"
   version "1.11.0.20220519"
   sha256 "b30b1d87d916570f7aa6d36777dd378e83215d75ea5a2c14106028b6bddc261b"
 

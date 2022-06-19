@@ -1,9 +1,6 @@
 name: Stable Ubuntu 20.04
 
-on:
-  push:
-  schedule:
-    - cron: '0 8 * * 6'
+on: push
 
 jobs:
   build:

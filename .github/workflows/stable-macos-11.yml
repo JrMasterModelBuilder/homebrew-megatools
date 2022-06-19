@@ -1,9 +1,6 @@
 name: Stable macOS 11
 
-on:
-  push:
-  schedule:
-    - cron: '0 8 * * 6'
+on: push
 
 jobs:
   build:
