@@ -1,18 +1,18 @@
-class MegatoolsExperimental < Formula
+class MegatoolsStable < Formula
   desc "Command-line client for Mega.co.nz"
   homepage "https://megatools.megous.com/"
-  url "https://megatools.megous.com/builds/experimental/megatools-1.11.0-git-20220401.tar.gz"
-  version "1.11.0-git-20220401"
-  sha256 "e63fc192c69cb51436beff95940b69e843a0e82314251d28e48e9388c374b3f1"
+  url "https://megatools.megous.com/builds/megatools-1.11.0.20220519.tar.gz"
+  version "1.11.0.20220519"
+  sha256 "b30b1d87d916570f7aa6d36777dd378e83215d75ea5a2c14106028b6bddc261b"
 
   livecheck do
-    url "https://megatools.megous.com/builds/experimental/"
-    regex(/href=.*?megatools[._-]v?(\d+(?:\.\d+)+\-git\-\d+)\.tar\.gz/i)
+    url "https://megatools.megous.com/builds/"
+    regex(/href=.*?megatools[._-]v?(\d+(?:\.\d+)+)\.tar\.gz/i)
   end
 
   conflicts_with "megatools", because: "Homebrew version"
+  conflicts_with "megatools-experimental", because: "Experimental version"
   conflicts_with "megatools-experimental-extra", because: "Experimental extra version"
-  conflicts_with "megatools-stable", because: "Stable version"
   conflicts_with "megatools-stable-extra", because: "Stable extra version"
 
   depends_on "asciidoc" => :build
