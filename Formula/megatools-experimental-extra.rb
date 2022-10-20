@@ -10,22 +10,22 @@ class MegatoolsExperimentalExtra < Formula
     regex(/href=.*?megatools[._-]v?(\d+(?:\.[\dx]+)+)\.t/i)
   end
 
-  conflicts_with "megatools", because: "homebrew version"
-  conflicts_with "megatools-experimental", because: "experimental version"
-  conflicts_with "megatools-stable", because: "stable version"
-  conflicts_with "megatools-stable-extra", because: "stable extra version"
-
   depends_on "asciidoc" => :build
   depends_on "meson" => :build
-  depends_on "ninja" => :build
   depends_on "cmake" => :build
   depends_on "docbook2x" => :build
+  depends_on "ninja" => :build
   depends_on "pkg-config" => :build
   depends_on "glib"
   depends_on "glib-networking"
   depends_on "openssl@1.1"
 
   uses_from_macos "curl"
+
+  conflicts_with "megatools", because: "homebrew version"
+  conflicts_with "megatools-experimental", because: "experimental version"
+  conflicts_with "megatools-stable", because: "stable version"
+  conflicts_with "megatools-stable-extra", because: "stable extra version"
 
   def install
     ##########################################################################
