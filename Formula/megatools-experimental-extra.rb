@@ -117,10 +117,14 @@ class MegatoolsExperimentalExtra < Formula
     EOS
 
     # Add functions to set skip_over_quota similar to create_preview.
-    inreplace "lib/mega.h", "void mega_session_enable_previews(struct mega_session *s, gboolean enable);", <<~'EOS'.strip
-      void mega_session_skip_over_quota(struct mega_session *s, gboolean enable);
-      void mega_session_enable_previews(struct mega_session *s, gboolean enable);
-    EOS
+    inreplace(
+      "lib/mega.h",
+      "void mega_session_enable_previews(struct mega_session *s, gboolean enable);",
+      <<~'EOS'.strip,
+        void mega_session_skip_over_quota(struct mega_session *s, gboolean enable);
+        void mega_session_enable_previews(struct mega_session *s, gboolean enable);
+      EOS
+    )
     inreplace "lib/mega.c", "// {{{ mega_session_enable_previews", <<~'EOS'.strip
       // {{{ mega_session_skip_over_quota
 
@@ -140,7 +144,7 @@ class MegatoolsExperimentalExtra < Formula
       static gboolean skip_over_quota;
       static gboolean opt_enable_previews = BOOLEAN_UNSET_BUT_TRUE;
     EOS
-    inreplace "lib/tools.c", 'if (opt_enable_previews == BOOLEAN_UNSET_BUT_TRUE) {', <<~'EOS'.strip
+    inreplace "lib/tools.c", "if (opt_enable_previews == BOOLEAN_UNSET_BUT_TRUE) {", <<~'EOS'.strip
       gboolean skip_over_quota_bool = g_key_file_get_boolean(kf, "Network", "SkipOverQuota", &local_err);
       if (local_err == NULL)
         skip_over_quota = skip_over_quota_bool;
@@ -151,7 +155,7 @@ class MegatoolsExperimentalExtra < Formula
     EOS
 
     # Set when creating session.
-    inreplace "lib/tools.c", 'mega_session_enable_previews(s, TRUE);', <<~'EOS'.strip
+    inreplace "lib/tools.c", "mega_session_enable_previews(s, TRUE);", <<~'EOS'.strip
       mega_session_skip_over_quota(s, skip_over_quota);
       mega_session_enable_previews(s, TRUE);
     EOS
