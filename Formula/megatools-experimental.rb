@@ -6,8 +6,8 @@ class MegatoolsExperimental < Formula
   sha256 "e63fc192c69cb51436beff95940b69e843a0e82314251d28e48e9388c374b3f1"
 
   livecheck do
-    url "https://megatools.megous.com/builds/experimental/"
-    regex(/href=.*?megatools[._-]v?(\d+(?:\.\d+)+\-git\-\d+)\.tar\.gz/i)
+    url "https://megatools.megous.com/builds/builds/experimental/"
+    regex(/href=.*?megatools[._-]v?(\d+(?:\.[\dx]+)+)\.tar\.gz/i)
   end
 
   conflicts_with "megatools", because: "Homebrew version"
