@@ -22,26 +22,26 @@ jobs:
         uses: Homebrew/actions/setup-homebrew@master
 
       - name: Tap Dir
-        run: mkdir -p "$(brew --repo)/Library/Taps/github"
+        run: mkdir -p "$(brew --repo)/Library/Taps/$(dirname "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')"
 
       - name: Tap Link
-        run: ln -s "$PWD" "$(brew --repo)/Library/Taps/github/homebrew-test"
+        run: ln -s "$PWD" "$(brew --repo)/Library/Taps/$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')"
 
       - name: Taps
         run: brew tap
 
       - name: Info
-        run: brew info "github/test/${{ matrix.config.name }}"
+        run: brew info "${{ matrix.config.name }}"
 
       - name: Install
-        run: brew install -v ${{ matrix.config.args }} "github/test/${{ matrix.config.name }}"
+        run: brew install -v "${{ matrix.config.name }}"
 
       - name: Installed
-        run: brew info "github/test/${{ matrix.config.name }}"
+        run: brew info "${{ matrix.config.name }}"
 
       - name: Audit
-        run: brew audit --except=file,specs "github/test/${{ matrix.config.name }}"
+        run: brew audit --except=file,specs "${{ matrix.config.name }}"
 
       - name: Test
-        run: brew test "github/test/${{ matrix.config.name }}"
+        run: brew test "${{ matrix.config.name }}"
         if: matrix.config.test == 1
