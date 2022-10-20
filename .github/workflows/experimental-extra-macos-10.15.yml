@@ -18,6 +18,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
       - name: Tap Dir
         run: mkdir -p "$(brew --repo)/Library/Taps/github"
 
