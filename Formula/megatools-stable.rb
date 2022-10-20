@@ -7,20 +7,20 @@ class MegatoolsStable < Formula
 
   livecheck do
     url "https://megatools.megous.com/builds/"
-    regex(/href=.*?megatools[._-]v?(\d+(?:\.\d+)+)\.tar\.gz/i)
+    regex(/href=.*?megatools[._-]v?(\d+(?:\.\d+)+)\.t/i)
   end
 
-  conflicts_with "megatools", because: "Homebrew version"
-  conflicts_with "megatools-experimental", because: "Experimental version"
-  conflicts_with "megatools-experimental-extra", because: "Experimental extra version"
-  conflicts_with "megatools-stable-extra", because: "Stable extra version"
+  conflicts_with "megatools", because: "homebrew version"
+  conflicts_with "megatools-experimental", because: "experimental version"
+  conflicts_with "megatools-experimental-extra", because: "experimental extra version"
+  conflicts_with "megatools-stable-extra", because: "stable extra version"
 
   depends_on "asciidoc" => :build
-  depends_on "pkg-config" => :build
   depends_on "meson" => :build
   depends_on "ninja" => :build
   depends_on "cmake" => :build
   depends_on "docbook2x" => :build
+  depends_on "pkg-config" => :build
   depends_on "glib"
   depends_on "glib-networking"
   depends_on "openssl@1.1"
