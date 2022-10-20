@@ -1,9 +1,9 @@
 class MegatoolsExperimentalExtra < Formula
   desc "Command-line client for Mega.co.nz"
   homepage "https://megatools.megous.com/"
-  url "https://github.com/JrMasterModelBuilder/homebrew-megatools/releases/download/sources/megatools-1.11.0-git-20220401.tar.gz"
-  version "1.11.0-git-20220401"
-  sha256 "e63fc192c69cb51436beff95940b69e843a0e82314251d28e48e9388c374b3f1"
+  url "https://github.com/JrMasterModelBuilder/homebrew-megatools/releases/download/sources/megatools-1.11.x.20220919.tar.gz"
+  version "1.11.x.20220919"
+  sha256 "1106ed8338789be54a9162023e57ec408a12b4069d2179f6cafe88e0e84a1d95"
 
   livecheck do
     url "https://megatools.megous.com/builds/builds/experimental/"
