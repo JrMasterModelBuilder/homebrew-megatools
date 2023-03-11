@@ -1,9 +1,9 @@
 class MegatoolsStable < Formula
   desc "Command-line client for Mega.co.nz"
   homepage "https://megatools.megous.com/"
-  url "https://github.com/JrMasterModelBuilder/homebrew-megatools/releases/download/sources/megatools-1.11.0.20220519.tar.gz"
-  version "1.11.0.20220519"
-  sha256 "b30b1d87d916570f7aa6d36777dd378e83215d75ea5a2c14106028b6bddc261b"
+  url "https://github.com/JrMasterModelBuilder/homebrew-megatools/releases/download/sources/megatools-1.11.1.20230212.tar.gz"
+  version "1.11.1.20230212"
+  sha256 "ecfa2ee4b277c601ebae648287311030aa4ca73ea61ee730bc66bef24ef19a34"
 
   livecheck do
     url "https://megatools.megous.com/builds/"
@@ -16,6 +16,7 @@ class MegatoolsStable < Formula
   depends_on "meson" => :build
   depends_on "ninja" => :build
   depends_on "pkg-config" => :build
+  depends_on "curl"
   depends_on "glib"
   depends_on "glib-networking"
   depends_on "openssl@1.1"
