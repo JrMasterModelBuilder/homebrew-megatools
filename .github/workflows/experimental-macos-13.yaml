@@ -1,0 +1,47 @@
+name: Experimental macOS 13
+
+on: push
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        config:
+          - host: macos-13
+            name: megatools-experimental
+            test: 1
+            args: ''
+
+    runs-on: ${{ matrix.config.host }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Tap Dir
+        run: mkdir -p "$(brew --repo)/Library/Taps/$(dirname "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')"
+
+      - name: Tap Link
+        run: ln -s "$PWD" "$(brew --repo)/Library/Taps/$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')"
+
+      - name: Taps
+        run: brew tap
+
+      - name: Info
+        run: brew info "${{ matrix.config.name }}"
+
+      - name: Install
+        run: brew install -v "${{ matrix.config.name }}"
+
+      - name: Installed
+        run: brew info "${{ matrix.config.name }}"
+
+      - name: Audit
+        run: brew audit --except=file,specs "${{ matrix.config.name }}"
+
+      - name: Test
+        run: brew test "${{ matrix.config.name }}"
+        if: matrix.config.test == 1
