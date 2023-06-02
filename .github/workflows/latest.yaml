@@ -1,0 +1,29 @@
+name: Latest
+
+on:
+  push:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  build:
+    if: github.repository == 'JrMasterModelBuilder/homebrew-flasm'
+
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Check Latest
+        run: |
+          if [[ "$(curl -f -L -s 'https://megatools.megous.com/builds/LATEST')" != 'megatools-1.11.1.20230212 ']]; then
+            exit 1
+          fi
+
+      - name: Keep Alive
+        uses: gautamkrishnar/keepalive-workflow@v1
+        with:
+          commit_message: ${{ env.KA_COMMIT_MESSAGE }}
+          committer_username: ${{ env.KA_COMMIT_USER }}
+          committer_email: ${{ secrets.KA_COMMIT_EMAIL }}
