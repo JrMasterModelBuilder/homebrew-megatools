@@ -17,7 +17,9 @@ jobs:
 
       - name: Check Latest
         run: |
-          if [[ "$(curl -f -L -s 'https://megatools.megous.com/builds/LATEST')" != 'megatools-1.11.1.20230212' ]]; then
+          version="$(curl -f -L -s 'https://megatools.megous.com/builds/LATEST')"
+          if [[ "${version}" != 'megatools-1.11.1.20230212' ]]; then
+            echo "New version: ${version}"
             exit 1
           fi
 
