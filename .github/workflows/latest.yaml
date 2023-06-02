@@ -16,12 +16,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Check Latest
-        run: |
-          version="$(curl -f -L -s 'https://megatools.megous.com/builds/LATEST')"
-          if [[ "${version}" != 'megatools-1.11.1.20230212' ]]; then
-            echo "New version: ${version}"
-            exit 1
-          fi
+        run: ./test/latest.sh
 
       - name: Keep Alive
         uses: gautamkrishnar/keepalive-workflow@v1
