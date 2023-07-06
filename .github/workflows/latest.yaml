@@ -21,6 +21,6 @@ jobs:
       - name: Keep Alive
         uses: gautamkrishnar/keepalive-workflow@v1
         with:
-          commit_message: ${{ env.KA_COMMIT_MESSAGE }}
-          committer_username: ${{ env.KA_COMMIT_USER }}
+          commit_message: ${{ vars.KA_COMMIT_MESSAGE }}
+          committer_username: ${{ vars.KA_COMMIT_USER }}
           committer_email: ${{ secrets.KA_COMMIT_EMAIL }}
