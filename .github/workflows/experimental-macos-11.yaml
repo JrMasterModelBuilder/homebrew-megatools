@@ -15,6 +15,9 @@ jobs:
     runs-on: ${{ matrix.config.host }}
 
     steps:
+      - name: Conflict
+        run: rm -rf /usr/local/bin/2to3
+
       - name: Checkout
         uses: actions/checkout@v3
 
@@ -34,7 +37,7 @@ jobs:
         run: brew info "${{ matrix.config.name }}"
 
       - name: Install
-        run: brew install -v --overwrite "${{ matrix.config.name }}"
+        run: brew install -v "${{ matrix.config.name }}"
 
       - name: Installed
         run: brew info "${{ matrix.config.name }}"
