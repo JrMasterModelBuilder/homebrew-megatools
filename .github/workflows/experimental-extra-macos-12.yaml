@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Conflict
-        run: rm -rf /usr/local/bin/{2to3,idle3}*
+        run: rm -rf /usr/local/bin/{2to3,idle3,pydoc3}*
 
       - name: Checkout
         uses: actions/checkout@v3
