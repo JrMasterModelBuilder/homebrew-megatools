@@ -15,14 +15,14 @@ jobs:
     runs-on: ${{ matrix.config.host }}
 
     steps:
-      - name: Conflict
-        run: rm -rf /usr/local/bin/{2to3,idle3,pydoc3}*
-
       - name: Checkout
         uses: actions/checkout@v3
 
       - name: Homebrew
         uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Python Overwrite
+        run: brew install --overwrite python
 
       - name: Tap Dir
         run: mkdir -p "$(brew --repo)/Library/Taps/$(dirname "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')"
