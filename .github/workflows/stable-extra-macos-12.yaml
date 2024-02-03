@@ -24,6 +24,9 @@ jobs:
       - name: Python Cleanup
         run: find "$(brew --prefix)/bin" -type l -ilname '/Library/Frameworks/Python.framework/*' -print -delete
 
+      - name: Test
+        run: ls -al "$(brew --prefix)/bin"
+
       - name: Tap Dir
         run: mkdir -p "$(brew --repo)/Library/Taps/$(dirname "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')"
 
