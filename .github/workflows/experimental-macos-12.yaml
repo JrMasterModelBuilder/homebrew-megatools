@@ -21,8 +21,8 @@ jobs:
       - name: Homebrew
         uses: Homebrew/actions/setup-homebrew@master
 
-      - name: Python Overwrite
-        run: brew install --overwrite python
+      - name: Python Cleanup
+        run: find "$(brew --prefix)/bin" -type l -ilname '/Library/Frameworks/Python.framework/*' -delete
 
       - name: Tap Dir
         run: mkdir -p "$(brew --repo)/Library/Taps/$(dirname "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')"
