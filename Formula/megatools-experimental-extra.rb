@@ -176,12 +176,9 @@ class MegatoolsExperimentalExtra < Formula
     ##########################################################################
     # Build
     ##########################################################################
-    mkdir "build" do
-      system "meson", ".."
-      system "meson", "configure", "--prefix", prefix
-      system "ninja", "--verbose"
-      system "ninja", "install", "--verbose"
-    end
+    system "meson", "setup", "build", *std_meson_args
+    system "meson", "compile", "-C", "build", "--verbose"
+    system "meson", "install", "-C", "build"
   end
 
   test do
