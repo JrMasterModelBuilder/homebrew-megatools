@@ -4,6 +4,8 @@ class MegatoolsExperimental < Formula
   url "https://github.com/JrMasterModelBuilder/homebrew-megatools/releases/download/sources/megatools-1.11.x.20220919.tar.gz"
   version "1.11.x.20220919"
   sha256 "1106ed8338789be54a9162023e57ec408a12b4069d2179f6cafe88e0e84a1d95"
+  license "GPL-2.0-or-later" => { with: "openvpn-openssl-exception" }
+  revision 1
 
   livecheck do
     url "https://megatools.megous.com/builds/builds/experimental/"
