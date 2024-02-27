@@ -18,7 +18,7 @@ class MegatoolsExperimental < Formula
   depends_on "pkg-config" => :build
   depends_on "glib"
   depends_on "glib-networking"
-  depends_on "openssl@1.1"
+  depends_on "openssl@3"
 
   uses_from_macos "curl"
 
