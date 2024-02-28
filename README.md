@@ -15,30 +15,30 @@ Homebrew tap for megatools
 
 ## Tap
 
-```
-$ brew tap JrMasterModelBuilder/megatools
+```sh
+brew tap JrMasterModelBuilder/megatools
 ```
 
 ## Install Stable
 
-```
-$ brew install megatools-stable
+```sh
+brew install megatools-stable
 ```
 
 ## Install Stable Extra
 
-```
-$ brew install megatools-stable-extra
+```sh
+brew install megatools-stable-extra
 ```
 
 ## Install Experimental
 
-```
-$ brew install megatools-experimental
+```sh
+brew install megatools-experimental
 ```
 
 ## Install Experimental Extra
 
-```
-$ brew install megatools-experimental-extra
+```sh
+brew install megatools-experimental-extra
 ```
