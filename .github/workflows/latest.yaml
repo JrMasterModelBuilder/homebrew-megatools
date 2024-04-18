@@ -11,6 +11,9 @@ jobs:
 
     runs-on: ubuntu-22.04
 
+    permissions:
+      actions: write
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -19,7 +22,7 @@ jobs:
         run: ./test/latest.sh
 
       - name: Keep Alive
-        uses: gautamkrishnar/keepalive-workflow@v1
+        uses: gautamkrishnar/keepalive-workflow@v2
         with:
           commit_message: ${{ vars.KA_COMMIT_MESSAGE }}
           committer_username: ${{ vars.KA_COMMIT_USER }}
