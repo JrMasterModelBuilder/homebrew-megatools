@@ -4,7 +4,7 @@ set -o nounset
 set -o pipefail
 
 url='https://megatools.megous.com/builds/LATEST'
-expected='megatools-1.11.1.20230212'
+expected='megatools-1.11.1.20241028'
 
 version="$(curl -k -f -L -s "${url}")"
 if [[ "${version}" == "${expected}" ]]; then
