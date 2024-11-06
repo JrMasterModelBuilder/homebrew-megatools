@@ -1,18 +1,29 @@
-name: Stable Extra macOS 13
+name: CI
 
-on: push
+on:
+  push:
+  pull_request:
 
 jobs:
-  build:
+  test:
     strategy:
       matrix:
-        config:
-          - host: macos-13
-            name: megatools-stable-extra
-            test: 1
-            args: ''
+        host:
+          - macos-15
+          - macos-14
+          - macos-13
+          - ubuntu-24.04
+          - ubuntu-22.04
+          - ubuntu-20.04
+        name: 
+          - megatools-stable
+          - megatools-stable-extra
+          - megatools-experimental
+          - megatools-experimental-extra
 
-    runs-on: ${{ matrix.config.host }}
+    name: ${{ matrix.host }} ${{ matrix.name }}
+
+    runs-on: ${{ matrix.host }}
 
     steps:
       - name: Checkout
@@ -23,6 +34,7 @@ jobs:
 
       - name: Python Cleanup
         run: find "$(brew --prefix)/bin" -type l -ilname '*/Library/Frameworks/Python.framework/*' -print -delete
+        if: ${{ startsWith(matrix.host, 'macos-') }}
 
       - name: Tap Dir
         run: mkdir -p "$(brew --repo)/Library/Taps/$(dirname "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')"
@@ -34,17 +46,16 @@ jobs:
         run: brew tap
 
       - name: Info
-        run: brew info "${{ matrix.config.name }}"
+        run: brew info "${{ matrix.name }}"
 
       - name: Install
-        run: brew install -v "${{ matrix.config.name }}"
+        run: brew install -v "${{ matrix.name }}"
 
       - name: Installed
-        run: brew info "${{ matrix.config.name }}"
+        run: brew info "${{ matrix.name }}"
 
       - name: Audit
-        run: brew audit --except=file,specs "${{ matrix.config.name }}"
+        run: brew audit --except=file,specs "${{ matrix.name }}"
 
       - name: Test
-        run: brew test "${{ matrix.config.name }}"
-        if: matrix.config.test == 1
+        run: brew test "${{ matrix.name }}"
