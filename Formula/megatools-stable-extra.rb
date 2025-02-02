@@ -1,11 +1,10 @@
 class MegatoolsStableExtra < Formula
   desc "Command-line client for Mega.co.nz"
-  homepage "https://megatools.megous.com/"
-  url "https://github.com/JrMasterModelBuilder/homebrew-megatools/releases/download/sources/megatools-1.11.1.20241028.tar.gz"
-  version "1.11.1.20241028"
-  sha256 "3632135a23aa737950e74183199eb23d4e44461ca4221842717225fb31527a4d"
+  homepage "https://xff.cz/megatools/"
+  url "https://github.com/JrMasterModelBuilder/homebrew-megatools/releases/download/sources/megatools-1.11.2.20250127.tar.gz"
+  version "1.11.2.20250127"
+  sha256 "222a9292542d056b00098bf0a604ea4d0c00764a05c84447e77a856df7c3bbf6"
   license "GPL-2.0-or-later" => { with: "openvpn-openssl-exception" }
-  revision 1
 
   livecheck do
     url "https://megatools.megous.com/builds/"
