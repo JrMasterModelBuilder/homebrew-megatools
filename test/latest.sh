@@ -3,8 +3,8 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-url='https://megatools.megous.com/builds/LATEST'
-expected='megatools-1.11.1.20241028'
+url='https://xff.cz/megatools/builds/LATEST'
+expected='megatools-1.11.2.20250127'
 
 version="$(curl -k -f -L -s "${url}")"
 if [[ "${version}" == "${expected}" ]]; then
