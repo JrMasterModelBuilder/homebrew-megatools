@@ -14,7 +14,6 @@ jobs:
           - macos-13
           - ubuntu-24.04
           - ubuntu-22.04
-          - ubuntu-20.04
         name: 
           - megatools-stable
           - megatools-stable-extra
