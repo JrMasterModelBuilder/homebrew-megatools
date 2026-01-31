@@ -13,20 +13,19 @@ torctrl='9951'
 torprox="socks5://${torhost}:${torport}"
 torpass=''
 
+ncflags=''
+if [[ "$(nc -h 2>&1 | head -n1 | true)" == *'OpenBSD'* ]]; then
+	ncflags='-N'
+fi
+
 torcmd() {
 	printf 'AUTHENTICATE "%s"\r\n%s\r\n' "${torpass}" "$1" |\
-		nc "${torhost}" "${torctrl}" 2>/dev/null
+		nc ${ncflags} "${torhost}" "${torctrl}" 2>/dev/null
 }
 
 torprogress() {
-	echo 'Get progress 1...' >&2
-	torcmd 'GETINFO status/bootstrap-phase'
-	echo 'Get progress 2...' >&2
-	torcmd 'GETINFO status/bootstrap-phase'
-	echo 'Get progress 3...' >&2
 	local progress='0'
 	local bootstrap="$(torcmd 'GETINFO status/bootstrap-phase')"
-	echo "bootstrap: ${bootstrap}" >&2
 	if [[ "${bootstrap}" == *'PROGRESS='* ]]; then
 		local part="${bootstrap#*PROGRESS=}"
 		progress="${part%% *}"
@@ -79,7 +78,6 @@ for i in {1..10}; do
 			--SocksPort "${torport}" \
 			--ControlPort "${torctrl}" \
 			--HashedControlPassword "$(tor --hash-password "${torpass}")"
-		torprogress
 		torwait
 	fi
 
@@ -98,9 +96,8 @@ for i in {1..10}; do
 done
 echo "RESPONSE: ${response}"
 
-if [[ "${response}" == "${expected}" ]]; then
-	echo 'PASS: Verified version'
-else
+if [[ "${response}" != "${expected}" ]]; then
 	echo 'FAIL: Unexpect version'
 	exit 1
 fi
+echo 'PASS: Verified version'
