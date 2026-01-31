@@ -49,6 +49,10 @@ tornew() {
 	torwait
 }
 
+torcurl() {
+	curl --proxy "${torprox}" "$@"
+}
+
 cleanup() {
 	if [[ "${torpass}" != '' ]]; then
 		echo 'Tor shutdown...'
@@ -71,14 +75,16 @@ for i in {1..10}; do
 			--HashedControlPassword "$(tor --hash-password "${torpass}")"
 		torwait
 	fi
+
+	curlcmd='curl'
 	if [[ "${i}" != 1 ]]; then
 		if [[ "${i}" != 2 ]]; then
 			tornew
 		fi
-		response="$(curl -v --max-time 5 -k -f -L -s --proxy "${torprox}" "${url}" || true)"
-	else
-		response="$(curl -v --max-time 5 -k -f -L -s "${url}" || true)"
+		curlcmd='torcurl'
 	fi
+
+	response="$("${curlcmd}" -v --max-time 5 -k -f -L -s "${url}" || true)"
 	if [[ "${response}" == "${exprefix}"* ]]; then
 		break
 	fi
