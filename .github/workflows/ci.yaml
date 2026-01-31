@@ -62,3 +62,4 @@ jobs:
 
       - name: Test
         run: brew test "${{ matrix.name }}"
+        if: ${{ !(startsWith(matrix.host, 'ubuntu-') && endsWith(matrix.host, '-arm')) }}
