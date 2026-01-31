@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install
-        run: sudo apt-get install -y tor nc
+        run: sudo apt-get install -y tor
 
       - name: Check Latest
         run: ./test/latest.sh
