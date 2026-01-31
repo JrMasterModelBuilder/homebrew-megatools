@@ -19,9 +19,11 @@ torcmd() {
 }
 
 torprogress() {
-	echo 'Get progress...' >&2
+	echo 'Get progress 1...' >&2
+	torcmd 'GETINFO status/bootstrap-phase'
+	echo 'Get progress 2...' >&2
 	local progress='0'
-	local bootstrap=$(torcmd 'GETINFO status/bootstrap-phase')
+	local bootstrap="$(torcmd 'GETINFO status/bootstrap-phase')"
 	echo "bootstrap: ${bootstrap}" >&2
 	if [[ "${bootstrap}" == *'PROGRESS='* ]]; then
 		local part="${bootstrap#*PROGRESS=}"
