@@ -69,7 +69,7 @@ cleanup() {
 trap cleanup EXIT INT TERM
 
 response=''
-for i in {1..20}; do
+for i in {1..50}; do
 	echo "Attempt: ${i}"
 	if [[ "${i}" == 2 ]]; then
 		torpass="$(uuidgen)"
@@ -89,7 +89,7 @@ for i in {1..20}; do
 		curlcmd='torcurl'
 	fi
 
-	response="$("${curlcmd}" -v --max-time 5 -k -f -L -s "${url}" || true)"
+	response="$("${curlcmd}" -v --max-time 10 -k -f -L -s "${url}" || true)"
 	if [[ "${response}" == "${exprefix}"* ]]; then
 		break
 	fi
