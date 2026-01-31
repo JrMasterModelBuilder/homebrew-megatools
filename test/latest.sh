@@ -13,7 +13,6 @@ torctrl='9951'
 torprox="socks5://${torhost}:${torport}"
 torpass=''
 
-nc -h
 ncflags=''
 if [[ "$(nc -h 2>&1 | head -n1 || true)" == *'OpenBSD'* ]]; then
 	ncflags='-N'
@@ -79,10 +78,6 @@ for i in {1..10}; do
 			--SocksPort "${torport}" \
 			--ControlPort "${torctrl}" \
 			--HashedControlPassword "$(tor --hash-password "${torpass}")"
-		echo '> 1'
-		torcmd 'GETINFO status/bootstrap-phase'
-		echo '> 2'
-		torcmd 'GETINFO status/bootstrap-phase'
 		torwait
 	fi
 
