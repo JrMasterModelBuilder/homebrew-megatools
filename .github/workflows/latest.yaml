@@ -18,6 +18,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Install
+        run: apt-get install -y tor
+
       - name: Check Latest
         run: ./test/latest.sh
 
