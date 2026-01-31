@@ -19,6 +19,7 @@ torcmd() {
 }
 
 torprogress() {
+	echo 'Get progress...' >&2
 	local progress='0'
 	local bootstrap=$(torcmd 'GETINFO status/bootstrap-phase')
 	echo "bootstrap: ${bootstrap}" >&2
@@ -74,6 +75,7 @@ for i in {1..10}; do
 			--SocksPort "${torport}" \
 			--ControlPort "${torctrl}" \
 			--HashedControlPassword "$(tor --hash-password "${torpass}")"
+		torprogress
 		torwait
 	fi
 
