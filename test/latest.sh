@@ -8,8 +8,8 @@ expected='megatools-1.11.5.20250706'
 exprefix='megatools-'
 
 torhost='127.0.0.1'
-torport='9050'
-torctrl='9051'
+torport='9950'
+torctrl='9951'
 torprox="socks5://${torhost}:${torport}"
 torpass=''
 
