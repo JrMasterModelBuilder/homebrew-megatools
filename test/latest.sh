@@ -15,7 +15,7 @@ torpass=''
 
 nc -h
 ncflags=''
-if [[ "$(nc -h 2>&1 | head -n1 | true)" == *'OpenBSD'* ]]; then
+if [[ "$(nc -h 2>&1 | head -n1 || true)" == *'OpenBSD'* ]]; then
 	ncflags='-N'
 fi
 
