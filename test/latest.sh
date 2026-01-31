@@ -73,6 +73,7 @@ for i in {1..10}; do
 			--SocksPort "${torport}" \
 			--ControlPort "${torctrl}" \
 			--HashedControlPassword "$(tor --hash-password "${torpass}")"
+		torcmd 'GETINFO status/bootstrap-phase'
 		torwait
 	fi
 
