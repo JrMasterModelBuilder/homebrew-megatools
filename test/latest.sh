@@ -69,7 +69,7 @@ cleanup() {
 trap cleanup EXIT INT TERM
 
 response=''
-for i in {1..10}; do
+for i in {1..20}; do
 	echo "Attempt: ${i}"
 	if [[ "${i}" == 2 ]]; then
 		torpass="$(uuidgen)"
