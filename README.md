@@ -8,6 +8,7 @@ Homebrew tap for megatools
 
 ```sh
 brew tap JrMasterModelBuilder/megatools
+brew trust JrMasterModelBuilder/megatools
 ```
 
 ## Install Stable
