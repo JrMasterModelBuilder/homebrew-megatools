@@ -10,7 +10,6 @@ jobs:
       matrix:
         host:
           - macos-26
-          - macos-15-intel
           - macos-15
           - macos-14
           - ubuntu-24.04
