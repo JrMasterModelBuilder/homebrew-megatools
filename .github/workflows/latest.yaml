@@ -28,3 +28,4 @@ jobs:
         uses: liskin/gh-workflow-keepalive@f72ff1a1336129f29bf0166c0fd0ca6cf1bcb38c # v1.2.1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: ${{ !cancelled() }}
