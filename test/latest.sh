@@ -3,9 +3,20 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-url='https://xff.cz/megatools/builds/LATEST'
-expected='megatools-1.11.5.20250706'
-exprefix='megatools-'
+url='https://xff.cz/megatools/builds'
+expected='
+megatools-1.10.2.tar.gz
+megatools-1.10.3.tar.gz
+megatools-1.11.0.20220519.tar.gz
+megatools-1.11.1.20230212.tar.gz
+megatools-1.11.1.20241028.tar.gz
+megatools-1.11.3.20250203.tar.gz
+megatools-1.11.3.20250401.tar.gz
+megatools-1.11.4.20250411.tar.gz
+megatools-1.11.5.20250706.tar.gz
+'
+expnames='megatools-[a-zA-Z0-9._-]*\.tar\.gz'
+exptitle='Index of /builds/'
 
 torhost='127.0.0.1'
 torport='9950'
@@ -90,14 +101,21 @@ for i in {1..50}; do
 	fi
 
 	response="$("${curlcmd}" -v --max-time 10 -k -f -L -s "${url}" || true)"
-	if [[ "${response}" == "${exprefix}"* ]]; then
+	if [[ "${response}" == *"${exptitle}"* ]]; then
 		break
 	fi
 done
-echo "RESPONSE: ${response}"
+echo "RESPONSE:"
+echo '----------------------------------------'
+echo "${response}"
+echo '----------------------------------------'
 
-if [[ "${response}" != "${expected}" ]]; then
-	echo 'FAIL: Unexpect version'
-	exit 1
-fi
-echo 'PASS: Verified version'
+code=0
+while read -r f; do
+	if [[ "${expected}" != *$'\n'"${f}"$'\n'* ]]; then
+		echo "UNKNOWN: ${f}"
+		code=1
+	fi
+done < <(grep -o "${expnames}" <<< "${response}" | sort -u)
+
+exit "${code}"
