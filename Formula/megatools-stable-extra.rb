@@ -5,6 +5,7 @@ class MegatoolsStableExtra < Formula
   version "1.11.5.20250706"
   sha256 "51f78a03748a64b1066ce28a2ca75d98dbef5f00fe9789dc894827f9a913b362"
   license "GPL-2.0-or-later" => { with: "openvpn-openssl-exception" }
+  revision 1
 
   livecheck do
     url "https://megatools.megous.com/builds/"
@@ -13,13 +14,12 @@ class MegatoolsStableExtra < Formula
 
   depends_on "meson" => :build
   depends_on "ninja" => :build
-  depends_on "pkg-config" => :build
-  depends_on "curl"
+  depends_on "pkgconf" => :build
   depends_on "glib"
   depends_on "glib-networking"
   depends_on "openssl@3"
 
-  uses_from_macos "curl"
+  uses_from_macos "curl", since: :ventura
 
   conflicts_with "megatools", because: "homebrew version"
   conflicts_with "megatools-experimental", because: "experimental version"
