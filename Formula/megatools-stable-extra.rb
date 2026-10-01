@@ -5,7 +5,7 @@ class MegatoolsStableExtra < Formula
   version "1.11.5.20250706"
   sha256 "51f78a03748a64b1066ce28a2ca75d98dbef5f00fe9789dc894827f9a913b362"
   license "GPL-2.0-or-later" => { with: "openvpn-openssl-exception" }
-  revision 1
+  revision 2
 
   livecheck do
     url "https://megatools.megous.com/builds/"
