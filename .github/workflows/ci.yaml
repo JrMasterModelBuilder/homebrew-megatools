@@ -35,8 +35,8 @@ jobs:
       - name: Homebrew
         uses: Homebrew/actions/setup-homebrew@3cdb78d0f62ad29dd32de765782654f4eedea607 # 2026.08.31.1
 
-      - name: Python Cleanup
-        run: find "$(brew --prefix)/bin" -type l -ilname '*/Library/Frameworks/Python.framework/*' -print -delete
+      - name: Cleanup
+        run: brew list --formula | grep openssl | xargs -r brew unlink
         if: ${{ startsWith(matrix.host, 'macos-') }}
 
       - name: Tap Dir
