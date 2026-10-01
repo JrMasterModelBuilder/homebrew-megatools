@@ -16,10 +16,13 @@ class MegatoolsStable < Formula
   depends_on "ninja" => :build
   depends_on "pkgconf" => :build
   depends_on "glib"
-  depends_on "glib-networking"
   depends_on "openssl@3"
 
   uses_from_macos "curl", since: :ventura
+
+  on_macos do
+    depends_on "gettext"
+  end
 
   conflicts_with "megatools", because: "homebrew version"
   conflicts_with "megatools-experimental", because: "experimental version"
