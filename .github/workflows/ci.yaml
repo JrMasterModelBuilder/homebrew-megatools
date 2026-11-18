@@ -68,10 +68,14 @@ jobs:
       - name: Test
         run: brew test "${{ matrix.name }}"
 
-      - name: Temp Data
+      - name: Temp Archive
+        if: always()
+        run: tar -czf "$RUNNER_TEMP/brewtemp.tar.gz" -C /tmp brewtemp
+
+      - name: Temp Upload
         if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: ${{ matrix.host }} ${{ matrix.name }} brewtemp
-          path: /tmp/brewtemp
+          path: ${{ runner.temp }}/brewtemp.tar.gz
           include-hidden-files: true
