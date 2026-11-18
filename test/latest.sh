@@ -14,6 +14,7 @@ megatools-1.11.3.20250203.tar.gz
 megatools-1.11.3.20250401.tar.gz
 megatools-1.11.4.20250411.tar.gz
 megatools-1.11.5.20250706.tar.gz
+megatools-1.12.2.20261116.tar.gz
 '
 expnames='megatools-[a-zA-Z0-9._-]*\.tar\.gz'
 exptitle='Index of /builds/'
